@@ -82,9 +82,9 @@ export default function Dashboard() {
 
   return (
     <div className="page-wrapper container" style={{ paddingBottom: '40px' }}>
-      <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderBottom: '2px solid var(--liberty)', paddingBottom: '16px' }}>
+      <div className="dashboard-header">
         <div>
-          <h1 style={{ fontSize: '2rem', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '12px', textTransform: 'uppercase', letterSpacing: '2px' }}>
+          <h1 className="dashboard-header-title" style={{ fontSize: '2rem', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '12px', textTransform: 'uppercase', letterSpacing: '2px' }}>
             <Terminal size={28} color="var(--blue-de-france)" />
             System_Dashboard
           </h1>
@@ -93,7 +93,7 @@ export default function Dashboard() {
         <button 
           onClick={() => setIsModalOpen(true)}
           className="glass-button-outline data-font"
-          style={{ fontSize: '0.8rem', padding: '6px 12px' }}
+          style={{ fontSize: '0.8rem', padding: '6px 12px', width: '100%', maxWidth: '200px' }}
         >
           + Add Cash
         </button>
