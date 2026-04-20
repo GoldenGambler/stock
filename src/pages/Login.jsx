@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [isLogin, setIsLogin] = useState(true);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -21,7 +22,7 @@ export default function Login() {
       if (isLogin) {
         await login(email, password);
       } else {
-        await signup(email, password);
+        await signup(name || 'Trader', email, password);
       }
       navigate('/dashboard');
     } catch (err) {
@@ -54,6 +55,19 @@ export default function Login() {
         {error && <div style={{ background: 'rgba(255, 0, 0, 0.1)', color: '#ff6b6b', padding: '12px', borderRadius: '8px', border: '1px solid rgba(255, 0, 0, 0.2)' }}>{error}</div>}
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          {!isLogin && (
+            <div>
+              <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Full Name</label>
+              <input 
+                type="text" 
+                className="glass-input" 
+                required={!isLogin}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="John Doe"
+              />
+            </div>
+          )}
           <div>
             <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Email Address</label>
             <input 

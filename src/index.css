@@ -1,21 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --platinum: #E5E4E2;
-  --thistle: #D8BFD8;
-  --liberty: #545AA7;
-  --blue-de-france: #318CE7;
-  --little-boy-blue: #6CA0DC;
+  --platinum: #EEE2DF;
+  --thistle: #DEC1DB;
+  --liberty: #5B61B2;
+  --blue-de-france: #2F80E4;
+  --little-boy-blue: #6DA0E1;
   
-  --bg-gradient-start: #1e1e2f;
+  --bg-gradient-start: #05050A;
   --bg-gradient-end: #0f0f1a;
   
-  --glass-bg: rgba(229, 228, 226, 0.1); /* Platinum transparent */
-  --glass-border: rgba(229, 228, 226, 0.2);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --glass-bg: rgba(238, 226, 223, 0.05);
+  --glass-border: rgba(91, 97, 178, 0.4);
+  --glass-shadow: 0 0 15px rgba(47, 128, 228, 0.15);
   
-  --text-primary: #f8f9fa;
-  --text-secondary: #E5E4E2;
+  --text-primary: #EEE2DF;
+  --text-secondary: #DEC1DB;
+  
+  --y2k-grid: linear-gradient(rgba(109, 160, 225, 0.05) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(109, 160, 225, 0.05) 1px, transparent 1px);
 }
 
 * {
@@ -26,11 +29,18 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  background-color: var(--bg-gradient-start);
+  background-image: var(--y2k-grid);
+  background-size: 30px 30px;
   color: var(--text-primary);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.data-font {
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 0.5px;
 }
 
 a {
@@ -44,70 +54,76 @@ button {
   font-family: inherit;
 }
 
-/* Glassmorphism Utilities */
+/* Glassmorphism / Y2K Tech Utilities */
 .glass {
-  background: var(--glass-bg);
+  background: rgba(5, 5, 10, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  border-radius: 16px;
+  border: 1px solid var(--liberty);
+  box-shadow: inset 0 0 10px rgba(91, 97, 178, 0.2), 0 0 15px rgba(0,0,0,0.5);
+  border-radius: 4px;
 }
 
 .glass-panel {
-  background: rgba(216, 191, 216, 0.05); /* Thistle hint */
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(216, 191, 216, 0.15);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
+  background: rgba(10, 10, 20, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(91, 97, 178, 0.5);
+  box-shadow: inset 0 0 15px rgba(91, 97, 178, 0.1), 0 4px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
 }
 
 .glass-button {
-  background: linear-gradient(135deg, var(--blue-de-france), var(--liberty));
-  color: white;
+  background: linear-gradient(135deg, var(--liberty), var(--blue-de-france));
+  color: var(--platinum);
   padding: 10px 24px;
-  border-radius: 8px;
+  border-radius: 2px;
   font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(49, 140, 231, 0.4);
+  transition: all 0.2s ease;
+  border: 1px solid var(--little-boy-blue);
+  box-shadow: inset 0 0 8px rgba(255,255,255,0.1), 0 0 8px rgba(47, 128, 228, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .glass-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(49, 140, 231, 0.6);
-  background: linear-gradient(135deg, var(--little-boy-blue), var(--liberty));
+  transform: translateY(-1px);
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.2), 0 0 15px rgba(47, 128, 228, 0.6);
+  background: linear-gradient(135deg, var(--blue-de-france), var(--little-boy-blue));
 }
 
 .glass-button-outline {
-  background: transparent;
-  border: 2px solid var(--little-boy-blue);
+  background: rgba(109, 160, 225, 0.05);
+  border: 1px solid var(--little-boy-blue);
   color: var(--little-boy-blue);
   padding: 8px 22px;
-  border-radius: 8px;
+  border-radius: 2px;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .glass-button-outline:hover {
-  background: rgba(108, 160, 220, 0.1);
-  box-shadow: 0 4px 15px rgba(108, 160, 220, 0.2);
+  background: rgba(109, 160, 225, 0.15);
+  box-shadow: 0 0 10px rgba(109, 160, 225, 0.3);
+  color: var(--platinum);
 }
 
 .glass-input {
   width: 100%;
   padding: 12px 16px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--glass-border);
-  color: var(--text-primary);
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--liberty);
+  color: var(--platinum);
   outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .glass-input:focus {
   border-color: var(--little-boy-blue);
-  box-shadow: 0 0 0 2px rgba(108, 160, 220, 0.3);
+  box-shadow: inset 0 0 8px rgba(109, 160, 225, 0.2), 0 0 8px rgba(109, 160, 225, 0.4);
 }
 
 .text-gradient {
@@ -133,6 +149,40 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Responsive Grids */
+.responsive-grid-2-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.responsive-grid-1-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.responsive-trade-grid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 32px;
+}
+
+.responsive-profile-grid {
+  display: grid;
+  grid-template-columns: minmax(250px, 1fr) 2fr;
+  gap: 32px;
+}
+
+@media (max-width: 900px) {
+  .responsive-grid-2-1,
+  .responsive-grid-1-1,
+  .responsive-trade-grid,
+  .responsive-profile-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Scrollbar */

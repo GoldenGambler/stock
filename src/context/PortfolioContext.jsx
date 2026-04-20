@@ -12,13 +12,23 @@ export function usePortfolio() {
 export function PortfolioProvider({ children }) {
   const { currentUser } = useAuth();
   const [balance, setBalance] = useState(0);
+  const [userData, setUserData] = useState(null);
   const [portfolio, setPortfolio] = useState([]); // List of holdings
   const [trades, setTrades] = useState([]); // Trade history
   const [loading, setLoading] = useState(true);
 
+  // Helper for Firestore timeouts
+  const withTimeout = (promise, ms = 8000) => {
+    const timeout = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error("Database connection timeout. Please make sure you have clicked 'Create Database' under Firestore Database in your Firebase Console.")), ms)
+    );
+    return Promise.race([promise, timeout]);
+  };
+
   const fetchUserData = useCallback(async () => {
     if (!currentUser) {
       setBalance(0);
+      setUserData(null);
       setPortfolio([]);
       setTrades([]);
       setLoading(false);
@@ -29,15 +39,16 @@ export function PortfolioProvider({ children }) {
       setLoading(true);
       // Fetch balance
       const userRef = doc(db, 'users', currentUser.uid);
-      const userSnap = await getDoc(userRef);
+      const userSnap = await withTimeout(getDoc(userRef));
       if (userSnap.exists()) {
         setBalance(userSnap.data().balance);
+        setUserData(userSnap.data());
       }
 
       // Fetch trades
       const tradesRef = collection(db, 'trades');
       const q = query(tradesRef, where('userId', '==', currentUser.uid));
-      const querySnapshot = await getDocs(q);
+      const querySnapshot = await withTimeout(getDocs(q));
       
       const tradesData = [];
       querySnapshot.forEach((doc) => {
@@ -70,6 +81,7 @@ export function PortfolioProvider({ children }) {
 
     } catch (error) {
       console.error("Error fetching portfolio:", error);
+      alert(error.message || "Failed to connect to the database. Check your Firestore Database setup.");
     } finally {
       setLoading(false);
     }
@@ -121,12 +133,23 @@ export function PortfolioProvider({ children }) {
     return balance + holdingsValue;
   }, [portfolio, balance]);
 
+  const addFunds = async (amount) => {
+    if (!currentUser) throw new Error("Must be logged in");
+    const newBalance = balance + amount;
+    const userRef = doc(db, 'users', currentUser.uid);
+    await updateDoc(userRef, { balance: newBalance });
+    setBalance(newBalance);
+    setUserData(prev => ({ ...prev, balance: newBalance }));
+  };
+
   const value = {
     balance,
+    userData,
     portfolio,
     trades,
     loading,
     executeTrade,
+    addFunds,
     totalPortfolioValue,
     refreshData: fetchUserData
   };

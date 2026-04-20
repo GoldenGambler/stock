@@ -41,6 +41,9 @@ export default function Navbar() {
             <Link to="/trade" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', fontWeight: '500' }}>
               <TrendingUp size={18} color="var(--blue-de-france)" /> Trade
             </Link>
+            <Link to="/profile" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', fontWeight: '500' }}>
+              <User size={18} color="var(--text-primary)" /> Profile
+            </Link>
             <button onClick={handleLogout} className="glass-button-outline" style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '6px 16px', fontSize: '0.9rem' }}>
               <LogOut size={16} /> Logout
             </button>
