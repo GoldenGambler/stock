@@ -26,7 +26,7 @@ export default function Login() {
     <div className="page-wrapper flex-center container">
       <div className="glass-panel" style={{ width: '100%', maxWidth: '400px', padding: '40px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
         <h2 style={{ fontSize: '2rem', textAlign: 'center', color: 'var(--platinum)' }}>
-          Welcome Back
+          Welcome
         </h2>
         
         {error && <div style={{ background: 'rgba(255, 0, 0, 0.1)', color: '#ff6b6b', padding: '12px', borderRadius: '4px', border: '1px solid rgba(255, 0, 0, 0.2)' }}>{error}</div>}

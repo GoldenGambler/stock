@@ -75,10 +75,6 @@ export default function Dashboard() {
   }
 
   const totalAssets = totalPortfolioValue + balance;
-  // Calculate mock gain/loss
-  const initialInvestment = 10000; // Assuming starting with 10k
-  const totalGain = totalAssets - initialInvestment;
-  const gainPercentage = (totalGain / initialInvestment) * 100;
 
   return (
     <div className="page-wrapper container" style={{ paddingBottom: '40px' }}>
@@ -111,17 +107,7 @@ export default function Dashboard() {
           <h2 className="data-font" style={{ fontSize: '1.8rem', color: 'var(--little-boy-blue)' }}>{formatCurrency(balance)}</h2>
         </div>
 
-        <div className="glass-panel" style={{ padding: '20px', borderLeft: `4px solid ${totalGain >= 0 ? '#4ade80' : '#ef4444'}` }}>
-          <p style={{ color: 'var(--thistle)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>Total Return</p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <h2 className="data-font" style={{ fontSize: '1.8rem', color: totalGain >= 0 ? '#4ade80' : '#ef4444' }}>
-              {totalGain >= 0 ? '+' : ''}{formatCurrency(totalGain)}
-            </h2>
-            <span className="data-font" style={{ color: totalGain >= 0 ? '#4ade80' : '#ef4444', fontSize: '1rem' }}>
-              ({totalGain >= 0 ? '+' : ''}{gainPercentage.toFixed(2)}%)
-            </span>
-          </div>
-        </div>
+
 
         <div className="glass-panel" style={{ padding: '20px', borderLeft: '4px solid var(--thistle)' }}>
           <p style={{ color: 'var(--thistle)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>Active Nodes</p>
