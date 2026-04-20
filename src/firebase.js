@@ -1,21 +1,21 @@
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// Replace these with your actual Firebase project config in a .env file
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyDummyKeyReplaceThisWithYourOwn",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "stock-sim-dummy.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "stock-sim-dummy",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "stock-sim-dummy.appspot.com",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "1234567890",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:1234567890:web:abcdef123456"
+  apiKey: "AIzaSyBpx6JBccaPXXjgtI4AHZ2OhkTeaJlq1Cw",
+  authDomain: "stock-aced7.firebaseapp.com",
+  projectId: "stock-aced7",
+  storageBucket: "stock-aced7.firebasestorage.app",
+  messagingSenderId: "730162706286",
+  appId: "1:730162706286:web:bf32dc6f0690abcb39737f",
+  measurementId: "G-P87GP7Q69F"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-
-export default app;
+const analytics = getAnalytics(app);
